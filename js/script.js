@@ -1,13 +1,24 @@
-$(function() {
-  $('.menu-trigger').on('click', function(event) {
-    // .menu-triggerクリック時に行われる処理
-    //.menu-triggerはどこに設定されているかというと、ハンバーガーアイコン<a class="menu-trigger" href="#">に設定されている
-    $(this).toggleClass('active');
-    //.toggleClass()でclass属性を切り替える
-    //.toggleClass()は、指定されているclass（ここではactive）をトグル処理するメソッド
-    $('#sp-menu').fadeToggle();
-    //.fadeToggle()は、要素のフェードイン・フェードアウトを切り替えるメソッド
-    //ここでは、#sp-menuが開いたときに、.fadeToggle()が処理されるように設定している。
-    event.preventDefault();
-  });
+//jQueryで「クリックイベント」を設定する
+
+
+$('#tab-contents .tab[id != "tab1"]').hide();
+//$()関数では、特定の属性を持つ要素や属性値を絞り込むことができます
+//$('要素[属性]')
+//属性値が特定の値に等しい要素だけを取得したいときは、以下のように記述します。
+//$('要素[属性 = "値"]')
+//属性値が特定の値に等しい要素だけを取得したいときは、以下のように記述します。
+//$('要素[属性 = "値"]')
+//今回は、初期設定で表示されるのはTAB1のコンテンツだけにして、それ以外の内容は非表示します。
+//属性値が特定の値に等しくない要素だけを取得したいときは、以下のように記述します。
+//$('要素[属性 != "値"]')
+//.hide();は、特定のHTML要素を非表示にするメソッドです。
+//$('#tab-contents .tab[id != "tab1"]').hide();と記述することで、
+//id="tab-contents"の要素のうち、 class="tab"であり、id="tab1"ではない要素が非表示になります。
+
+$('#tab-menu a').on('click', function(event) {
+  $("#tab-contents .tab").hide();
+  $("#tab-menu .active").removeClass("active");
+  $(this).addClass("active");
+  $($(this).attr("href")).show();
+  event.preventDefault();
 });
